@@ -1,29 +1,39 @@
 package challenge.apidemo.registration.model;
 
-import javax.persistence.Column;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import java.util.Date;
+import javax.persistence.*;
+import java.time.LocalDate;
 
+@Entity
+@Table(name = "person")
 public class Person {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
+
     @Column
+    @Basic(optional = false)
     private String name;
+
     @Column
+    @Enumerated(EnumType.STRING)
     private Gender gender;
+
     @Column
     private String email;
-    @Column
-    private Date dateOfBirth;
-    @Column
+
+    @Column(name = "birth_date")
+    @Basic(optional = false)
+    private LocalDate dateOfBirth;
+
+    @Column(name = "birth_place")
     private String placeOfBirth;
+
     @Column
     private String nationality;
+
     @Column
+    @Basic(optional = false)
     private String CPF;
 
     public long getId() {
@@ -58,11 +68,11 @@ public class Person {
         this.email = email;
     }
 
-    public Date getDateOfBirth() {
+    public LocalDate getDateOfBirth() {
         return dateOfBirth;
     }
 
-    public void setDateOfBirth(Date dateOfBirth) {
+    public void setDateOfBirth(LocalDate dateOfBirth) {
         this.dateOfBirth = dateOfBirth;
     }
 
