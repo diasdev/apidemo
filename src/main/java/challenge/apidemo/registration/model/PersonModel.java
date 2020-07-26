@@ -1,58 +1,40 @@
 package challenge.apidemo.registration.model;
 
 import javax.persistence.*;
+import javax.validation.constraints.Email;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 
-@Entity
-@Table(name = "person")
-public class Person {
+public class PersonModel {
 
-    public Person(PersonModel model) {
-        this.name = model.getName();
-        this.email = model.getEmail();
-        this.gender = model.getGender();
-        this.dateOfBirth = model.getDateOfBirth();
-        this.CPF = model.getCPF();
-        this.placeOfBirth = model.getPlaceOfBirth();
-        this.nationality = model.getNationality();
-    }
-
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long id;
-
-    @Column
-    @Basic(optional = false)
+    @NotNull
+    @NotBlank
     private String name;
 
-    @Column
-    @Enumerated(EnumType.STRING)
+    @NotNull
+    @NotBlank
     private Gender gender;
 
-    @Column
+    @Email
     private String email;
 
-    @Column(name = "birth_date")
-    @Basic(optional = false)
+    @NotNull
+    @NotBlank
     private LocalDate dateOfBirth;
 
-    @Column(name = "birth_place")
     private String placeOfBirth;
 
-    @Column
     private String nationality;
 
-    @Column
-    @Basic(optional = false)
+    @NotNull
+    @NotBlank
     private String CPF;
 
-    public long getId() {
-        return id;
-    }
+    private LocalDateTime creationDate;
 
-    public void setId(long id) {
-        this.id = id;
-    }
+    private LocalDateTime updateDate;
 
     public String getName() {
         return name;
@@ -108,5 +90,21 @@ public class Person {
 
     public void setCPF(String CPF) {
         this.CPF = CPF;
+    }
+
+    public LocalDateTime getCreationDate() {
+        return creationDate;
+    }
+
+    public void setCreationDate(LocalDateTime creationDate) {
+        this.creationDate = creationDate;
+    }
+
+    public LocalDateTime getUpdateDate() {
+        return updateDate;
+    }
+
+    public void setUpdateDate(LocalDateTime updateDate) {
+        this.updateDate = updateDate;
     }
 }
