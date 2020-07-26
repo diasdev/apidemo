@@ -11,7 +11,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping(value = "/api/people", produces = "application/hal+json")
-public class MainController {
+public class PersonController {
 
     @Autowired
     private PersonRepository personRepository;
